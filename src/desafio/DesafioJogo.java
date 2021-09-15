@@ -27,10 +27,14 @@ public class DesafioJogo {
 		
 		numpartidas = leitor.nextInt();
 		
-		if (numpartidas % 2 == 0 || numpartidas < 3) {
+		while (numpartidas % 2 == 0 || numpartidas < 3) {
+			System.out.println();
 			System.out.println("Número de partidas inserido inválido");
-		} else {
-			while (cont < numpartidas && jogarnovamente.equals("S")) {
+			System.out.println();
+			System.out.print("Digite novamente quantas partidas: ");
+			numpartidas = leitor.nextInt();}
+			
+			while (cont < numpartidas && jogarnovamente.equals("S") ) {
 				
 				System.out.println();
 				System.out.println("Escolha uma opção: ");
@@ -42,63 +46,50 @@ public class DesafioJogo {
 				System.out.print("Digite sua escolha(use apenas os algorismos 1, 2 ou 3: ");
 				valorUsuario = leitor.nextInt();
 				
+				while ( valorUsuario < 1 || valorUsuario > 3) {
+					System.out.println();
+					System.out.println("Valor inserido ínvalido");
+					System.out.println();
+					System.out.print("Digite sua escolha novamente: ");
+					valorUsuario = leitor.nextInt();
+				}
+					
+				
+				System.out.println();
+				System.out.println("Partida " + (cont + 1));
 				System.out.println();
 				
-				System.out.println("Partida " + (cont + 1));
 				
+				if (valorUsuario == 1) {
+					System.out.println("Você selecionou pedra");
+				} else if (valorUsuario == 2) {
+					System.out.println("Você selecionou papel");
+				} else {
+					System.out.println("Você selecionou tesoura");
+				}
 				
+				if (valorsorteio == 1) {
+					System.out.println("O computador selecionou pedra");
+				} else if (valorsorteio == 2) {
+					System.out.println("O computador selecionou papel");
+				} else {
+					System.out.println("O computador selecionou tesoura");
+				}
 				
-				if (valorUsuario == 1 && valorsorteio == 2) {
-					System.out.println("O usuário selecionou: " + valorUsuario + "(pedra)"); 
-					System.out.println("O computador selecionou: " + valorsorteio + "(papel)"); 
-					System.out.println();
-					System.out.println("O computador ganhou!!!");
-					vitoriascomp = vitoriascomp + 1;
-				} else if (valorUsuario == 1 && valorsorteio == 3) {
-					System.out.println("O usuário selecionou: " + valorUsuario + "(pedra)");
-					System.out.println("O computador selecionou: " + valorsorteio + "(tesoura)");  
-					System.out.println();
-					System.out.println("O usuário ganhou!!!");
-					vitoriasusuario = vitoriasusuario + 1;
-					
-				} else if (valorUsuario == 1 && valorsorteio == 1) {
-					System.out.println("O usuário selecionou: " + valorUsuario + "(pedra)"); 
-				    System.out.println("O computador selecionou: " + valorsorteio + "(pedra)");
-				    System.out.println();
-					System.out.println("Deu empate!!!");
-					empate = empate + 1;
+				 if((valorUsuario == 1 && valorsorteio == 3) || (valorUsuario == 2 && valorsorteio == 1) || (valorUsuario == 3 && valorsorteio == 2)) {
+	    			 System.out.println("Você ganhou essa rodada");
+	    			  vitoriasusuario++;
+	    		 }else if((valorsorteio == 1 && valorUsuario == 3) ||  (valorsorteio == 2 && valorUsuario == 1) || (valorsorteio == 3 && valorUsuario == 2)) {
+	    		     System.out.println("Você perdeu essa rodada");
+	    	 	     vitoriascomp++;	 
+	    	     }else{
+	    	    	 System.out.println("Empatou");
+	    	    	 empate++;
+				 
+				if ( vitoriascomp >= numpartidas/ 2 + 1 || vitoriasusuario >= numpartidas/ 2 + 1) {
+					cont = numpartidas;
+				}
 				
-				} else if (valorUsuario == 2 && valorsorteio == 3) {
-					System.out.println("O usuário selecionou: " + valorUsuario + "(papel)"); 
-					System.out.println("O computador selecionou: " + valorsorteio + "(tesoura)");
-					System.out.println();
-					System.out.println("O computador ganhou!!!");
-				} else if (valorUsuario == 2 && valorsorteio == 1) {
-					System.out.println("O usuário selecionou: " + valorUsuario + "(papel)"); 
-					System.out.println("O computador selecionou: " + valorsorteio + "(pedra)");
-					System.out.println();
-					System.out.println("O usuário ganhou!!!");
-				} else if (valorUsuario == 3 && valorsorteio == 1) {
-					System.out.println("O usuário selecionou: " + valorUsuario + "(tesoura)"); 
-					System.out.println("O computador selecionou: " + valorsorteio + "(pedra)");
-					System.out.println();
-					System.out.println("O computador ganhou!!!");
-				} else if (valorUsuario == 3 && valorsorteio == 2) {
-					System.out.println("O usuário selecionou: " + valorUsuario + "(tesoura)"); 
-					System.out.println("O computador selecionou: " + valorsorteio + "(papel)");
-					System.out.println();
-					System.out.println("O usuário ganhou!!!");	
-				}  else if (valorUsuario == 2 && valorsorteio == 2) {
-					System.out.println("O usuário selecionou: " + valorUsuario + "(pedra)"); 
-					System.out.println("O computador selecionou: " + valorsorteio + "(pedra)");
-					System.out.println();
-					System.out.println("Deu empate!!!");
-				} else if (valorUsuario == 3 && valorsorteio == 3) {
-					System.out.println("O usuário selecionou: " + valorUsuario + "(tesoura)"); 
-					System.out.println("O computador selecionou: " + valorsorteio + "(tesoura)");
-					System.out.println();
-					System.out.println("Deu empate!!!");
-				} 
 				cont++;
 				
 				
@@ -112,18 +103,21 @@ public class DesafioJogo {
 				
 			}
 			
+			}
 			
-					
-		}
+			
+			
+	}			
 		
+}	
 			
 		
 		
 	
 		
 		
-	}	
 
-	}
+
+	
 
 
